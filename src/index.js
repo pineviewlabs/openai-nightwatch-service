@@ -53,16 +53,16 @@ app.post('/analyze-error', upload.single('screenshot'), async (req, res) => {
           }
         ]
       },
-      {
-        role: "user",
-        content: [
-          { type: "text", text: "The image provided is the screenshot taken of the browser window at the time of the test failure. Provide any useful feedback which might help with figuring out why the test failed." },
-          {
-            type: "image_url",
-            image_url: imageUrl
-          },
-        ],
-      }
+      // {
+      //   role: "user",
+      //   content: [
+      //     { type: "text", text: "The image provided is the screenshot taken of the browser window at the time of the test failure. Provide any useful feedback which might help with figuring out why the test failed." },
+      //     {
+      //       type: "image_url",
+      //       image_url: imageUrl
+      //     },
+      //   ],
+      // }
     ];
 
     const response = await openai.chat.completions.create({
