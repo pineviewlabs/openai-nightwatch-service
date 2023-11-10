@@ -49,19 +49,19 @@ app.post('/analyze-error', upload.single('screenshot'), async (req, res) => {
         content: [
           {
             type: "text",
-            text: `Investigate and explain why the tests failed. Assume an advanced user and give brief and concrete responses. Check the provided test code for typos or syntax errors. When appropriate, if the error message contains a css selector, provide a quick way to debug the element, like so: 1) update the test code by prepending the line: .debug({selector: "REPLACE_WITH_ACTUAL"}) before the line which caused the error and 2. run nightwatch using the flags: --debug --devtools, then inspect the DevTools Console . Error message: ${errorMessage}\n.Code snippet from test case where the error occurred: ${codeSnippet}. ${details}` }
+            text: `Investigate and explain why the tests failed. Assume an advanced user and give brief and concrete responses. heck the provided test code for typos or syntax errors. When appropriate, if the error message contains a css selector, provide a quick way to debug the element, like so: 1) update the test code by prepending the line: .debug({selector: "REPLACE_WITH_ACTUAL"}) before the line which caused the error and 2. run nightwatch using the flags: --debug --devtools, then inspect the DevTools Console . Error message: ${errorMessage}\n.Code snippet from test case where the error occurred: ${codeSnippet}. ${details}`
         ]
       },
-      {
+      /*{
         role: "user",
         content: [
-          { type: "text", text: "The image provided is the screenshot taken of the browser window at the time of the test failure. Analyze it and provide any useful feedback which might help with figuring out why the test failed." },
+          { type: "text", text: "The image provided is the screenshot taken of the browser window at the time of the test failure. Provide any useful feedback which might help with figuring out why the test failed." },
           {
             type: "image_url",
             image_url: imageUrl
           },
         ],
-      }
+      }*/
     ];
 
     const response = await openai.chat.completions.create({
@@ -74,7 +74,7 @@ app.post('/analyze-error', upload.single('screenshot'), async (req, res) => {
   } catch (error) {
     res.status(500).json({ error: error.message });
   } finally {
-    await deleteImage(req.file.filename);
+	  //await deleteImage(req.file.filename);
   }
 });
 
