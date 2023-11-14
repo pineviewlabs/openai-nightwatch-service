@@ -35,7 +35,7 @@ app.post('/analyze-error', upload.single('screenshot'), async (req, res) => {
     const { file: imageFile } = req;
 
     const imageUrl = `${BASE_URL}/uploads/${imageFile.filename}`;
-    console.log('imageUrl', imageUrl);
+    // console.log('imageUrl', imageUrl);
     const additionalDetails = JSON.parse(req.body.additionalDetails);
     const details = `Additional details: Nightwatch version: ${additionalDetails.nightwatchVersion}, config file: ${additionalDetails.configFile}, platform: ${additionalDetails.platform}, browser: ${additionalDetails.browser}, headless mode: ${additionalDetails.headless}.`;
     // Create messages for the OpenAI API
